@@ -18,7 +18,7 @@ spec:
         image: abdoussalam/frontend-ml-project:v1
         env:
         - name: REACT_APP_BACKEND_URL
-          value: "http://backend-service:5000"
+          value: http://backend-service:5000
         - name: CHOKIDAR_USEPOLLING
           valueFrom:
             configMapKeyRef:
