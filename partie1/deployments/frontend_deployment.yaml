@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    app: frontend
+spec:
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: abdoussalam/frontend-ml-project:v1
+        env:
+        - name: REACT_APP_BACKEND_URL
+          value: "http://backend-service:5000"
+        - name: CHOKIDAR_USEPOLLING
+          valueFrom:
+            configMapKeyRef:
+              name: frontent-configmap
+              key: CHOKIDAR_USEPOLLING

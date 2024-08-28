@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontent-configmap
+data:
+  REACT_APP_BACKEND_URL: "http://192.168.100.16" 
+  CHOKIDAR_USEPOLLING: "true"
