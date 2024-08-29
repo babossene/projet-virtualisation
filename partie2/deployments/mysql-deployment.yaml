@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deployment-p2
+  labels:
+    app: mysql-p2
+spec:
+  selector:
+    matchLabels:
+      app: mysql-p2
+  template:
+    metadata:
+      labels:
+        app: mysql-p2
+    spec:
+      containers:
+      - name: mysql-p2
+        image: mysql:8.0
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: ml-project-secret-p2
+              key: MYSQL_ROOT_PASSWORD
+        - name: MYSQL_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: mysql-configmap-p2
+              key: MYSQL_DATABASE
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: ml-project-secret-p2
+              key: MYSQL_USER
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: ml-project-secret-p2
+              key: MYSQL_PASSWORD
+        volumeMounts:
+        - name: mysql-persistent-storage-p2
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-persistent-storage-p2
+        persistentVolumeClaim:
+          claimName: mysql-pvc-p2
