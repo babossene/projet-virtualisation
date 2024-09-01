@@ -7,7 +7,6 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    name: mysql-deployment
     app: mysql
   ports:
     - protocol: TCP

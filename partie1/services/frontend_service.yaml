@@ -7,7 +7,6 @@ metadata:
 spec:
   type: NodePort
   selector:
-    name: frontend-deployment
     app: frontend
   ports:
     - protocol: TCP
