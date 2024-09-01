@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: frontend-deployment
   labels:
+    name: frontend-deployment
     app: frontend
 spec:
   selector:
@@ -16,6 +17,8 @@ spec:
       containers:
       - name: frontend
         image: abdoussalam/frontend-ml-project:v1
+        ports:
+        - containerPort: 3000
         env:
         - name: REACT_APP_BACKEND_URL
           value: http://backend-service:5000
