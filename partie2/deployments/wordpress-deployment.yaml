@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: ml-project-2
   name: wordpress-deployment
   labels:
     name: wordpress-deployment

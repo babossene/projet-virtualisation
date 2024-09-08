@@ -1,6 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: ml-project
   name: frontend-service
   labels:
     name: frontend-service
