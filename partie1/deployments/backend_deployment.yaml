@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: abdoussalam/backend-ml-project:v3
+        image: badarabs/backend-ml-project:v1
         ports:
         - containerPort: 5000
         env:
@@ -42,3 +42,29 @@ spec:
             configMapKeyRef:
               name: backend-configmap
               key: FLASK_ENV
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+  labels: 
+    name: backend-service
+spec:
+  type: ClusterIP
+  selector:
+    app: backend
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+      name: backend-cluster-ip
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-configmap
+data:
+  MYSQL_DATABASE: db_ml_project
+  FLASK_ENV: development

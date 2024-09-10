@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: abdoussalam/frontend-ml-project:v1
+        image: badarabs/frontend-ml-project:v1
         ports:
         - containerPort: 3000
         env:
@@ -27,3 +27,31 @@ spec:
             configMapKeyRef:
               name: frontent-configmap
               key: CHOKIDAR_USEPOLLING
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+  labels:
+    name: frontend-service
+spec:
+  type: NodePort
+  selector:
+    app: frontend
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+      nodePort: 30001
+      name: frontend-cluster-ip
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontent-configmap
+data:
+  REACT_APP_BACKEND_URL: "http://192.168.100.25" 
+  CHOKIDAR_USEPOLLING: "true"
+
