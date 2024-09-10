@@ -1,13 +1,7 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: mysql-configmap-p2
-data:
-  MYSQL_DATABASE: db_ml_project_p2
-vagrant@uadb:~/ml_project/partie2/secrets$ cat ../deployments/phpmyadmin-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: ml-project-p2
   name: phpmyadmin-deployment
   labels:
     app: phpmyadmin

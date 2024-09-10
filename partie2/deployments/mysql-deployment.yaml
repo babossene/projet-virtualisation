@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: ml-project-2
+  namespace: ml-project-p2
   name: mysql-deployment-p2
   labels:
     app: mysql-p2
