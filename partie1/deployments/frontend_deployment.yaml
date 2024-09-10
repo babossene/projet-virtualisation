@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: ml-project
   name: frontend-deployment
   labels:
     name: frontend-deployment
@@ -21,7 +22,7 @@ spec:
         - containerPort: 3000
         env:
         - name: REACT_APP_BACKEND_URL
-          value: http://backend-service:5000
+          value: http://192.168.59.100:30005
         - name: CHOKIDAR_USEPOLLING
           valueFrom:
             configMapKeyRef:
