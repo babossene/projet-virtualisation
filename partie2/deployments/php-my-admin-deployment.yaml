@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: phpmyadmin
-          image: phpmyadmin
+          image: phpmyadmin/phpmyadmin
           ports:
             - containerPort: 80
           env:
@@ -31,7 +31,7 @@ spec:
                   name: mysql-secret-p2
                   key: password
             - name: PMA_USER
-              value: "root"
+              value: root
             - name: PMA_PASSWORD
               valueFrom:
                 secretKeyRef:
