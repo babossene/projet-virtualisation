@@ -25,6 +25,16 @@ spec:
             secretKeyRef:
               name: mysql-secret-p2
               key: password
+        - name: MYSQL_DATABASE
+          value: wordpress_db
+        - name: MYSQL_USER
+          value: "user"
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret-p2
+              key: mysql-password
+
         ports:
         - containerPort: 3306
           name: mysql

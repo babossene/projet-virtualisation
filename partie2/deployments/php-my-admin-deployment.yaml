@@ -32,4 +32,7 @@ spec:
             - name: PMA_USER
               value: "root"
             - name: PMA_PASSWORD
-              value: "toor"
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret-p2
+                  key: password  
