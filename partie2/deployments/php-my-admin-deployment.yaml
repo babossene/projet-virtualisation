@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: ml-project-p2
   name: phpmyadmin-deployment
   labels:
     app: phpmyadmin
