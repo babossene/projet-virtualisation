@@ -17,12 +17,12 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: badarabs/frontend-ml-project:v1
+        image: abdoussalam/frontend-ml-project:v1
         ports:
         - containerPort: 3000
         env:
         - name: REACT_APP_BACKEND_URL
-          value: http://192.168.59.100:30005
+          value: http://backend-service.ml-project.svc.cluster.local:5000
         - name: CHOKIDAR_USEPOLLING
           valueFrom:
             configMapKeyRef:
