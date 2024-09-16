@@ -22,7 +22,10 @@ spec:
         - containerPort: 3000
         env:
         - name: REACT_APP_BACKEND_URL
-          value: http://backend-service.ml-project.svc.cluster.local:5000
+          valueFrom:
+            configMapKeyRef:
+              name: frontent-configmap
+              key: REACT_APP_BACKEND_URL
         - name: CHOKIDAR_USEPOLLING
           valueFrom:
             configMapKeyRef:

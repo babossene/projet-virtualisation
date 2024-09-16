@@ -1,38 +1,44 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: ml-project-p2
-  name: mysql-deployment-p2
+  namespace: wordpress
+  name: mysql-deployment
   labels:
-    app: mysql-p2
+    app: mysql
 spec:
   selector:
     matchLabels:
-      app: mysql-p2
+      app: mysql
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: mysql-p2
+        app: mysql
     spec:
       containers:
       - image: mysql:8.0
-        name: mysql-deployment-p2
+        name: mysql-deployment
         env:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: mysql-secret-p2
+              name: mysql-secret
               key: password
         - name: MYSQL_DATABASE
-          value: wordpress_db
+          valueFrom:
+            configMapKeyRef:
+              name: mysql-configmap
+              key: MYSQL_DATABASE
         - name: MYSQL_USER
-          value: user
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: username
         - name: MYSQL_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: mysql-secret-p2
+              name: mysql-secret
               key: password
         ports:
         - containerPort: 3306

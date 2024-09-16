@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: ml-project-p2
+  namespace: wordpress
   name: phpmyadmin-deployment
   labels:
     app: phpmyadmin
@@ -22,18 +22,27 @@ spec:
             - containerPort: 80
           env:
             - name: PMA_HOST
-              value: mysql-service-p2
+              valueFrom:
+                configMapKeyRef:
+                  name: phpmyadmin-configmap
+                  key: HOST
             - name: PMA_PORT
-              value: "3306"
+              valueFrom:
+                configMapKeyRef:
+                  name: phpmyadmin-configmap
+                  key: PORT
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: mysql-secret-p2
+                  name: mysql-secret
                   key: password
             - name: PMA_USER
-              value: root
+              valueFrom:
+                secretKeyRef:
+                  name: phpmyadmin-secret
+                  key: PMA_USER
             - name: PMA_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: mysql-secret-p2
-                  key: password  
+                  name: phpmyadmin-secret
+                  key: PMA_PASSWORD  
