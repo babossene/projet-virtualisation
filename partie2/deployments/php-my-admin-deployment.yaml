@@ -35,14 +35,4 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: mysql-secret
-                  key: password
-            - name: PMA_USER
-              valueFrom:
-                secretKeyRef:
-                  name: phpmyadmin-secret
-                  key: PMA_USER
-            - name: PMA_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: phpmyadmin-secret
-                  key: PMA_PASSWORD  
+                  key: password  
